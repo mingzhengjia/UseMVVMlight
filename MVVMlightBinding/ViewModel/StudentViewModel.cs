@@ -26,24 +26,28 @@ namespace UseMVVMlight {
     public class StudentViewModel:ViewModelBase {
         public StudentViewModel() {
             styleNum = 0.5;
-            stuList = new ObservableCollection<Student>();
+            stuList = new List<Student>();
             GetData();
         }
         #region memeber
-        private ObservableCollection<Student> stuList;
-        private Student selectStu;
-        private double styleNum;
+        private List<Student> stuList;
+       
+        
 
-        public ObservableCollection<Student> StuList {
+        public List<Student> StuList {
             get {
                 return stuList;
             }
 
             set {
                 stuList = value;
+                if (stuList != value) {
+                    stuList = value;
+                    RaisePropertyChanged("StuList");
+                }
             }
         }
-
+        private Student selectStu;
         public Student SelectStu {
             get {
                 return selectStu;
@@ -57,7 +61,7 @@ namespace UseMVVMlight {
                
             }
         }
-
+        private double styleNum;
         public double StyleNum {
             get {
                 return styleNum;
