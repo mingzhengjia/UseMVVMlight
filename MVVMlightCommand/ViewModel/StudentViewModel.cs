@@ -21,26 +21,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
-namespace UseMVVMlight {
+namespace MVVMlightCommand {
     public class StudentViewModel:ViewModelBase {
         public StudentViewModel() {
             styleNum = 0.5;
             stuList = new ObservableCollection<Student>();
             GetData();
+            DeleteCommand = new RelayCommand(Delete, CanExe);
         }
         #region memeber
         private ObservableCollection<Student> stuList;
-       
-        
-
         public ObservableCollection<Student> StuList {
             get {
                 return stuList;
             }
 
             set {
-                stuList = value;
                 if (stuList != value) {
                     stuList = value;
                     RaisePropertyChanged("StuList");
@@ -76,6 +75,14 @@ namespace UseMVVMlight {
         }
 
         #endregion
+
+        public ICommand DeleteCommand { get; private set; }
+        public void Delete() {
+            StuList.Remove(SelectStu);
+        }
+        private bool CanExe() {
+            return StuList.Count > 7;
+        }
         private void GetData() {
             for (int i = 0; i < 10; i++) {
                 StuList.Add(new Student("name: "+i,i.ToString(),"male","add: "+i+ " 号"));
