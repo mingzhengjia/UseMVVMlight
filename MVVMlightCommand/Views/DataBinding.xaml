@@ -29,8 +29,9 @@
             Minimum="0"
             Maximum="1"
             Value="{Binding StyleNum}"/>
-        <Button Margin="5"
-            DockPanel.Dock="Top"  Command="{Binding DeleteCommand}">删除</Button>
+        
+        <Button Margin="5"   DockPanel.Dock="Top"  Command="{Binding DeleteCommand}">删除</Button>
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="6*"/>

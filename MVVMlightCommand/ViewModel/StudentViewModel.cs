@@ -32,6 +32,10 @@ namespace MVVMlightCommand {
             GetData();
             DeleteCommand = new RelayCommand(Delete, CanExe);
         }
+
+        public ICommand DeleteCommand { get; private set; }
+
+
         #region memeber
         private ObservableCollection<Student> stuList;
         public ObservableCollection<Student> StuList {
@@ -76,7 +80,7 @@ namespace MVVMlightCommand {
 
         #endregion
 
-        public ICommand DeleteCommand { get; private set; }
+        
         public void Delete() {
             StuList.Remove(SelectStu);
         }
